@@ -1,0 +1,18 @@
+# package directories
+node_modules
+jspm_packages
+aws
+*.zip
+package-lock.json
+
+# Serverless directories
+.serverless
+
+# esbuild directories
+.esbuild
+
+# 
+serverless.yml
+serverless-env-dev.yml
+serverless-env-production.yml
+tmp

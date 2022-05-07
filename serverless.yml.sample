@@ -1,0 +1,23 @@
+org: YOURNAME
+app: MY-APPNAME
+service: MY-APPNAME
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'} # dev for fallback, or "production"
+  region: ap-northeast-1
+  profile: default
+  runtime: nodejs14.x
+  architecture: arm64
+  environment:
+    BOT_TOKEN: ${file(./serverless-env-${opt:stage, 'dev'}.yml):BOT_TOKEN, ''}
+    REST_API_ID: ${file(./serverless-env-${opt:stage, 'dev'}.yml):REST_API_ID, ''}
+    # TABLE_NAME: ${file(./serverless-env-${opt:stage, 'dev'}.yml):TABLE_NAME, ''}
+    # BUCKET_NAME: ${file(./serverless-env-${opt:stage, 'dev'}.yml):BUCKET_NAME, ''}
+
+functions:
+  api:
+    handler: handler.handler
+    events:
+      - httpApi: '*'
